@@ -1,0 +1,16 @@
+create table supervizor_transakcije (podracun_v_breme text, datum_transakcije date, znesek_transakcije numeric(16,4), oznaka_valute_transakcije text, racun_v_dobro  text, naziv_prejemnika text, maticna_stevilka text, davcna_stevilka integer, sifra_pu integer, zr_sns_oe text, namen text);
+
+\COPY supervizor_transakcije from 'trans2003.csv' with csv header delimiter ';';
+...
+\COPY supervizor_transakcije from 'trans2018.csv' with csv header delimiter ';';
+
+create index isifra_pu_supervizor_mesecno on supervizor_mesecno (sifra_pu);
+create index ileto_supervizor_mesecno on supervizor_mesecno (leto);
+create index imesec_supervizor_mesecno on supervizor_mesecno (mesec);
+create index ivsota_prejemkov_supervizor_mesecno on supervizor_mesecno (vsota_prejemkov);
+create index inepovratna_sredstva_supervizor_mesecno on supervizor_mesecno (nepovratna_sredstva);
+create index ifiduciarni_posli_supervizor_mesecno on supervizor_mesecno (fiduciarni_posli);
+
+create index idatum_transakcije_supervizor_transakcije on supervizor_transakcije (datum_transakcije);
+create index idavcna_stevilka_supervizor_transakcije on supervizor_transakcije (davcna_stevilka);
+create index isifra_pu_supervizor_transakcije on supervizor_transakcije (sifra_pu);
